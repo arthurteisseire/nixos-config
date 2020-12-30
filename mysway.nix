@@ -25,8 +25,6 @@
       libappindicator-gtk3
       alacritty
       
-      font-awesome
-      cantarell-fonts
       dbus
       libnotify
       networkmanager_dmenu

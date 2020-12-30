@@ -90,8 +90,9 @@
     wget
     neovim
     alacritty
-    firefox
     gammastep
+    chromium
+    docker
 
     # gtk
     gtk-engine-murrine
@@ -115,6 +116,11 @@
     enable = true;
     plugins = [ "git" "sudo" "docker" "kubectl" ];
   }; 
+
+  fonts.fonts = with pkgs; [
+    font-awesome
+    cantarell-fonts
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
