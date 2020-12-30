@@ -8,11 +8,12 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./mysway.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
 
- boot.loader.systemd-boot.enable = true; # (for UEFI systems only)
+  boot.loader.systemd-boot.enable = true; # (for UEFI systems only)
   # Use the GRUB 2 boot loader.
   #
   #boot.loader.grub.enable = true;
@@ -52,59 +53,10 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome3.enable = true;
 
-  programs.sway = {
-    enable = true;
-
-    wrapperFeatures.gtk = true; # so that gtk works properly
-    
-    extraPackages = with pkgs; [
-      swaylock
-      swayidle
-      wl-clipboard
-      mako # notification daemon
-      dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
-      wofi
-      waybar
-      brightnessctl 
-      xwayland
-      wdisplays
-      libappindicator-gtk3
-      
-      font-awesome
-      cantarell-fonts
-      dbus
-      gir
-      libnotify
-      network-manager-applet
-      networkmanager-dmenu
-    ];
-
-    extraSessionCommands = ''
-      export SDL_VIDEODRIVER=wayland
-      # needs qt5.qtwayland in systemPackages
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      # Fix for some Java AWT applications (e.g. Android Studio),
-      # use this if they aren't displayed properly:
-      export _JAVA_AWT_WM_NONREPARENTING=1
-
-      XDG_CURRENT_DESKTOP=sway
-      XDG_RUNTIME_DIR=/run/user/1000
-      XDG_SEAT=seat0
-      XDG_SESSION_CLASS=user
-      XDG_SESSION_DESKTOP=sway
-      XDG_SESSION_TYPE=wayland
-    '';
-
-  };
-
   i18n.extraLocaleSettings = {
     LC_MESSAGES = "fr_FR.utf8";
     LC_TIME = "fr_FR.utf8";
   };
-
-  programs.qt5ct.enable = true;
-
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -120,14 +72,19 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.users.jane = {
-  #   isNormalUser = true;
-  #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  # };
+  users = { 
+    mutableUsers = true;
+    defaultUserShell = pkgs.zsh; # Make zsh default shell
+    users = {
+      arthur = {
+        shell = pkgs.zsh;
+        isNormalUser = true;
+        extraGroups = [ "wheel" "networkmanager" "docker" "video" ];
+      };
+    };
+  };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     git
     wget
@@ -152,27 +109,12 @@
   # Enable zsh
   programs.zsh.enable = true;
   programs.vim.defaultEditor = true;
-
-
   
   # Enable Oh-my-zsh
   programs.zsh.ohMyZsh = {
     enable = true;
     plugins = [ "git" "sudo" "docker" "kubectl" ];
   }; 
-
-  users = { 
-    mutableUsers = true;
-    defaultUserShell = pkgs.zsh; # Make zsh default shell
-    users = {
-      arthur = {
-        shell = pkgs.zsh;
-        isNormalUser = true;
-        extraGroups = [ "wheel" "networkmanager" "docker" "video" ];
-      };
-    };
-  };
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
