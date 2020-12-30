@@ -69,6 +69,14 @@
       xwayland
       wdisplays
       libappindicator-gtk3
+      
+      font-awesome
+      cantarell-fonts
+      dbus
+      gir
+      libnotify
+      network-manager-applet
+      networkmanager-dmenu
     ];
 
     extraSessionCommands = ''
