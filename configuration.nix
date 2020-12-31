@@ -88,13 +88,15 @@
   environment.systemPackages = with pkgs; [
     git
     wget
-    neovim
+    vim
+    vim_configurable
     alacritty
     gammastep
     chromium
     docker
     pavucontrol
     ghc
+    htop
 
     # gtk
     gtk-engine-murrine
@@ -108,6 +110,7 @@
     (jetbrains.idea-ultimate.override { jdk = pkgs.jetbrains.jdk; })
   ];
   nixpkgs.config.allowUnfree = true;
+
 
   # Enable zsh
   programs.zsh.enable = true;
