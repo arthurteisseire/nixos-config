@@ -54,7 +54,7 @@
   services.xserver.desktopManager.gnome3.enable = true;
 
   i18n.extraLocaleSettings = {
-    LC_MESSAGES = "fr_FR.utf8";
+    LC_MESSAGES = "en_US.utf8";
     LC_TIME = "fr_FR.utf8";
   };
 
