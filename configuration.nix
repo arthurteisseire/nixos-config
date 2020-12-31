@@ -94,6 +94,7 @@
     chromium
     docker
     pavucontrol
+    ghc
 
     # gtk
     gtk-engine-murrine
