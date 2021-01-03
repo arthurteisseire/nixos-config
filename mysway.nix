@@ -24,6 +24,7 @@
       wdisplays
       libappindicator-gtk3
       alacritty
+      kanshi
       
       dbus
       libnotify
