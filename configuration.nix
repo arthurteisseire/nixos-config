@@ -87,16 +87,17 @@
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     git
+    git-secret
     wget
     vim
     vim_configurable
     alacritty
     gammastep
     chromium
-    docker
     pavucontrol
-    ghc
     htop
+
+    nix-prefetch
 
     # gtk
     gtk-engine-murrine
@@ -107,9 +108,13 @@
     zsh
     oh-my-zsh
 
+    # unfree
     (jetbrains.idea-ultimate.override { jdk = pkgs.jetbrains.jdk; })
+    teams
+    postman
   ];
   nixpkgs.config.allowUnfree = true;
+  virtualisation.docker.enable = true;
 
 
   # Enable zsh
