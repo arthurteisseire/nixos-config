@@ -89,15 +89,21 @@
     git
     git-secret
     wget
-    vim
     vim_configurable
     alacritty
     gammastep
+    firefox
     chromium
+    google-chrome
     pavucontrol
     htop
+    zip
+    unzip
 
     nix-prefetch
+    nix-prefetch-git
+    direnv
+    nix-direnv
 
     # gtk
     gtk-engine-murrine
@@ -110,6 +116,7 @@
 
     # unfree
     (jetbrains.idea-ultimate.override { jdk = pkgs.jetbrains.jdk; })
+    (jetbrains.clion.override { jdk = pkgs.jetbrains.jdk; })
     teams
     postman
   ];
@@ -130,6 +137,16 @@
   fonts.fonts = with pkgs; [
     font-awesome
     cantarell-fonts
+  ];
+
+  # For nix direnv
+	nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  '';
+
+	environment.pathsToLink = [
+    "/share/nix-direnv"
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
