@@ -123,6 +123,8 @@
   nixpkgs.config.allowUnfree = true;
   virtualisation.docker.enable = true;
 
+  # Bluetooth
+  services.blueman.enable = true;
 
   # Enable zsh
   programs.zsh.enable = true;
