@@ -51,5 +51,11 @@
 
   };
 
+  environment.interactiveShellInit = ''
+    alias c='wl-copy'
+    alias p='wl-paste'
+  '';
+
+
   programs.qt5ct.enable = true;
 }

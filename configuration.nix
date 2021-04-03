@@ -131,10 +131,20 @@
   # Bluetooth
   services.blueman.enable = true;
 
-  # Enable zsh
-  programs.zsh.enable = true;
   programs.vim.defaultEditor = true;
-  
+
+  # Enable zsh
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      s = "git status";
+      config = "vim ~/.config/sway/config";
+      pconfig = "vim ~/.config/nixpkgs/config.nix";
+      gconfig = "vim /etc/nixos/configuration.nix";
+      sconfig = "vim /etc/nixos/my_sway.nix";
+    };
+  };
+
   # Enable Oh-my-zsh
   programs.zsh.ohMyZsh = {
     enable = true;
@@ -153,9 +163,7 @@
     keep-derivations = true
   '';
 
-	environment.pathsToLink = [
-    "/share/nix-direnv"
-  ];
+  environment.pathsToLink = [ "/share/nix-direnv" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
