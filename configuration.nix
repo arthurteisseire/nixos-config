@@ -13,16 +13,21 @@
 
   # Use the systemd-boot EFI boot loader.
 
-  boot.loader.systemd-boot.enable = true; # (for UEFI systems only)
-  # Use the GRUB 2 boot loader.
-  #
-  #boot.loader.grub.enable = true;
-  #boot.loader.grub.version = 2;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
-  #boot.loader.grub.device = "nodev"; # or "nodev" for efi only
+#  boot.loader.systemd-boot.enable = true; # (for UEFI systems only)
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+ 
+    grub = {
+      devices = [ "nodev" ];
+      enable = true;
+      efiSupport = true;
+      version = 2;
+      useOSProber = true;
+    };
+  };
 
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -134,6 +139,7 @@
   programs.zsh.ohMyZsh = {
     enable = true;
     plugins = [ "git" "sudo" "docker" "kubectl" ];
+    theme = "robbyrussell";
   }; 
 
   fonts.fonts = with pkgs; [
