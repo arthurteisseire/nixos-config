@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./mysway.nix
+      ./my_sway.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -164,6 +164,11 @@
   '';
 
   environment.pathsToLink = [ "/share/nix-direnv" ];
+
+	environment.interactiveShellInit = ''
+		eval "$(direnv hook zsh)"
+  '';
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
