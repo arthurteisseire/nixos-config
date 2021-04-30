@@ -104,6 +104,8 @@
     htop
     zip
     unzip
+    tree
+    gimp
 
     nix-prefetch
     nix-prefetch-git
