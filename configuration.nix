@@ -106,6 +106,7 @@
     unzip
     tree
     gimp
+    tdesktop
 
     nix-prefetch
     nix-prefetch-git
