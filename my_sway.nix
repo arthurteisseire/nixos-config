@@ -25,6 +25,7 @@
       libappindicator-gtk3
       alacritty
       kanshi
+      grim
       
       dbus
       libnotify
