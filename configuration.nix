@@ -7,6 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      <nixos-hardware/lenovo/thinkpad/t470s>
       ./hardware-configuration.nix
       ./my_sway.nix
     ];
@@ -56,7 +57,7 @@
   # Enable the GNOME 3 Desktop Environment.
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome3.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   i18n.extraLocaleSettings = {
     LC_MESSAGES = "en_US.utf8";
@@ -72,7 +73,17 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+	hardware = {
+    pulseaudio = {
+      enable = true;
+    };
+    bluetooth = {
+      enable = true;
+    };
+  };
+
+  services.blueman.enable = true;
+  services.fstrim.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -89,8 +100,12 @@
     };
   };
 
+  programs.steam.enable = true;
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
+    pipewire
+
+    # Softs
     git
     git-secret
     wget
@@ -107,6 +122,8 @@
     tree
     gimp
     tdesktop
+    smartgithg
+    slack
 
     nix-prefetch
     nix-prefetch-git
@@ -130,9 +147,6 @@
   ];
   nixpkgs.config.allowUnfree = true;
   virtualisation.docker.enable = true;
-
-  # Bluetooth
-  services.blueman.enable = true;
 
   programs.vim.defaultEditor = true;
 
@@ -198,7 +212,9 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "22.11"; # Did you read the comment?
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = false;
 
 }
 
