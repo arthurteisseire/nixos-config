@@ -10,6 +10,7 @@
       <nixos-hardware/lenovo/thinkpad/t470s>
       ./hardware-configuration.nix
       ./my_sway.nix
+      ./my_i3.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -124,6 +125,7 @@
     tdesktop
     smartgithg
     slack
+    gparted
 
     nix-prefetch
     nix-prefetch-git
@@ -159,6 +161,7 @@
       pconfig = "vim ~/.config/nixpkgs/config.nix";
       gconfig = "vim /etc/nixos/configuration.nix";
       sconfig = "vim /etc/nixos/my_sway.nix";
+      i3exit = "~/.config/i3/i3exit";
     };
   };
 
