@@ -126,6 +126,7 @@
     smartgithg
     slack
     gparted
+    blender
 
     nix-prefetch
     nix-prefetch-git
@@ -144,8 +145,11 @@
     # unfree
     (jetbrains.idea-ultimate.override { jdk = pkgs.jetbrains.jdk; })
     (jetbrains.clion.override { jdk = pkgs.jetbrains.jdk; })
+    (jetbrains.pycharm-community.override { jdk = pkgs.jetbrains.jdk; })
     teams
     postman
+    obs-studio
+    handbrake
   ];
   nixpkgs.config.allowUnfree = true;
   virtualisation.docker.enable = true;
