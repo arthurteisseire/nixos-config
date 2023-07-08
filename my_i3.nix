@@ -8,9 +8,10 @@
     desktopManager = {
       xterm.enable = false;
     };
+
    
     displayManager = {
-        defaultSession = "none+i3";
+      defaultSession = "none+i3";
     };
 
     windowManager.i3 = {
@@ -27,7 +28,9 @@
         scrot
         arandr
         xorg.xbacklight
+        xorg.xkbcomp
      ];
     };
+
   };
 }
