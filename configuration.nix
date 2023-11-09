@@ -127,6 +127,8 @@
     slack
     gparted
     blender
+    cgoban
+    qdirstat
 
     nix-prefetch
     nix-prefetch-git
@@ -162,6 +164,7 @@
     shellAliases = {
       s = "git status";
       config = "vim ~/.config/sway/config";
+      i3config = "vim ~/.config/i3/config";
       pconfig = "vim ~/.config/nixpkgs/config.nix";
       gconfig = "vim /etc/nixos/configuration.nix";
       sconfig = "vim /etc/nixos/my_sway.nix";
