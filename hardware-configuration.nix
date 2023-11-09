@@ -28,4 +28,10 @@
     ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport32Bit = true; # Enable 32-bit support if you're on a 64-bit system and need 32-bit compatibility
+  hardware.opengl.extraPackages = with pkgs; [
+    intel-compute-runtime
+  ];
 }
