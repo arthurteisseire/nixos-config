@@ -60,6 +60,14 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # Print
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
+
   i18n.extraLocaleSettings = {
     LC_MESSAGES = "en_US.utf8";
     LC_TIME = "fr_FR.utf8";
@@ -129,6 +137,8 @@
     blender
     cgoban
     qdirstat
+    transmission
+    ntfs3g
 
     nix-prefetch
     nix-prefetch-git
